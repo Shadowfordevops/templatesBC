@@ -14,8 +14,8 @@ resources:
 jobs:
 - job: Build
   timeoutInMinutes: 300
-    - template: templatesBC@variables.yml
-   
+- template: templatesBC@variables.yml
+
   steps:
     - template: templatesBC@set-build-number.yml
       parameters:
