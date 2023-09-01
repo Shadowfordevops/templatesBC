@@ -14,21 +14,21 @@ resources:
 jobs:
 - job: Build
   timeoutInMinutes: 300
-  - template: templatesBC@variables.yml
- 
+    - template: templatesBC@variables.yml
+   
   steps:
-  - template: templatesBC@set-build-number.yml
-    parameters:
-      appVersion: $(appVersion)
-
-  - template: templatesBC@run-pipeline.yml
-    parameters:
-      version: $(version)
-      appBuild: $(appBuild)
-      appRevision: $(appRevision)
-
-  - template: templatesBC@publish-test-results.yml
-
-  - template: templatesBC@publish-artifacts.yml
-
-  - template: templatesBC@cleanup.yml
+    - template: templatesBC@set-build-number.yml
+      parameters:
+        appVersion: $(appVersion)
+  
+    - template: templatesBC@run-pipeline.yml
+      parameters:
+        version: $(version)
+        appBuild: $(appBuild)
+        appRevision: $(appRevision)
+  
+    - template: templatesBC@publish-test-results.yml
+  
+    - template: templatesBC@publish-artifacts.yml
+  
+    - template: templatesBC@cleanup.yml
