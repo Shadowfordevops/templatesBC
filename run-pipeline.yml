@@ -1,0 +1,21 @@
+parameters:
+- name: version
+  type: string
+- name: appBuild
+  type: number
+- name: appRevision
+  type: number
+
+steps:
+- task: PowerShell@2
+  displayName: 'Run Pipeline'
+  env:
+    InsiderSasToken: '$(InsiderSasToken)'
+    LicenseFile: '$(LicenseFile)'
+    CodeSignCertPfxFile: '$(CodeSignCertPfxFile)'
+    CodeSignCertPfxPassword: '$(CodeSignCertPfxPassword)'
+  inputs:
+    targetType: filePath
+    filePath: 'scripts\DevOps-Pipeline.ps1'
+    arguments: '-environment "AzureDevOps" -version "${{ parameters.version }}" -appBuild ${{ parameters.appBuild }} -appRevision ${{ parameters.appRevision }}'
+    failOnStderr: true
