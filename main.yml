@@ -1,33 +1,26 @@
 trigger:
-- master
-
+  - master
 pool:
   name: test
   demands:
-  - agent.name -equals bcyaml
-
+    - agent.name -equals bcyaml
 resources:
   repositories:
-  - repository: templatesBC
-    type: git
-
+    - repository: templatesBC
+      type: git
 jobs:
-- job: Build
-  timeoutInMinutes: 300
-- template: variables.yml
-
-- template: set-build-number.yml
-  parameters:
-    appVersion: $(appVersion)
-  
-- template: run-pipeline.yml
-  parameters:
-    version: $(version)
-    appBuild: $(appBuild)
-    appRevision: $(appRevision)
-  
-- template: publish-test-results.yml
-  
-- template: publish-artifacts.yml
-  
-- template: cleanup.yml
+  - job: Build
+    timeoutInMinutes: 300
+  - template: variables.yml
+    steps:
+        - template: set-build-number.yml
+          parameters:
+          appVersion: $(appVersion)
+        - template: run-pipeline.yml
+          parameters:
+          version: $(version)
+          appBuild: $(appBuild)
+          appRevision: $(appRevision)
+        - template: publish-test-results.yml
+        - template: publish-artifacts.yml
+        - template: cleanup.yml
