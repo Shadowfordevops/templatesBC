@@ -8,6 +8,7 @@ resources:
   repositories:
     - repository: templatesBC
       type: git
+      name: Shadowfordevops/templatesBC
 jobs:
   - job: Build
     timeoutInMinutes: 300
