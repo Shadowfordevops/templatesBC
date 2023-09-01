@@ -1,0 +1,21 @@
+parameters:
+- name: group
+  type: string
+  default: BuildTest4
+
+variables:
+- group: ${{ parameters.group }}
+- name: build.clean
+  value: all
+- name: platform
+  value: x64
+- name: version
+  value: 'ci'
+- name: appVersion
+  value: '2.0'
+- name: appBuild
+  value: $(Build.BuildID)
+- name: appRevision
+  value: 0
+- name: skipComponentGovernanceDetection
+  value: True
