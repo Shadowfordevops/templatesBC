@@ -1,0 +1,10 @@
+parameters:
+- name: appVersion
+  type: string
+
+steps:
+- task: PowerShell@2
+  displayName: 'Set BuildNumber'
+  inputs:
+    targetType: inline
+    script: 'Write-Host "##vso[build.updatebuildnumber]${{ parameters.appVersion }}.$(appBuild).$(appRevision)"'
