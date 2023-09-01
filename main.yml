@@ -16,19 +16,18 @@ jobs:
   timeoutInMinutes: 300
 - template: variables.yml
 
-  steps:
-    - template: set-build-number.yml
-      parameters:
-        appVersion: $(appVersion)
+- template: set-build-number.yml
+  parameters:
+    appVersion: $(appVersion)
   
-    - template: run-pipeline.yml
-      parameters:
-        version: $(version)
-        appBuild: $(appBuild)
-        appRevision: $(appRevision)
+- template: run-pipeline.yml
+  parameters:
+    version: $(version)
+    appBuild: $(appBuild)
+    appRevision: $(appRevision)
   
-    - template: publish-test-results.yml
+- template: publish-test-results.yml
   
-    - template: publish-artifacts.yml
+- template: publish-artifacts.yml
   
-    - template: cleanup.yml
+- template: cleanup.yml
