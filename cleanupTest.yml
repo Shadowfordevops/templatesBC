@@ -1,0 +1,15 @@
+# File: templates/cleanup.yml
+parameters:
+- name: environment # Name of the parameter
+  type: string # Type of the parameter
+  default: AzureDevOps # Default value of the parameter
+
+steps:
+- task: PowerShell@2
+  displayName: 'Cleanup'
+  condition: always()
+  inputs:
+    targetType: filePath
+    filePath: 'scripts\Cleanup.ps1'
+    arguments: '-environment "${{ parameters.environment }}"' # Use the parameter value in the arguments
+    failOnStderr: false
