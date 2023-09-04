@@ -2,7 +2,7 @@ parameters:
 - name: appVersion
   type: string
 
-
+steps:
 - task: PowerShell@2
   displayName: 'Set BuildNumber'
   inputs:
