@@ -4,24 +4,20 @@ pool:
   name: test
   demands:
     - agent.name -equals bcyaml
-resources:
-  repositories:
-    - repository: templatesBC
-      type: git
-      name: Shadowfordevops/templatesBC
+
 jobs:
   - job: Build
     timeoutInMinutes: 300
   - template: variables.yml
     steps:
     - template: set-build-number.yml
-      parameters: null
-      appVersion: $(appVersion)
+      parameters: 
+        appVersion: $(appVersion)
     - template: run-pipeline.yml
-      parameters: null
-      version: $(version)
-      appBuild: $(appBuild)
-      appRevision: $(appRevision)
+      parameters:
+        version: $(version)
+        appBuild: $(appBuild)
+        appRevision: $(appRevision)
     - template: publish-test-results.yml
     - template: publish-artifacts.yml
     - template: cleanup.yml
